@@ -1,0 +1,27 @@
+rails new user_login_project
+rails g model User first_name:string last_name:string email_address:string age:integer
+rake db:migrate
+user1 = User.new
+user1.first_name = "Judy"
+user1.last_name = "Ma"
+VALIDATIONS:
+class User < ApplicationRecord
+    # has_many :sidekicks, #dependent: :destroy
+    validates :first_name, :last_name, :email_address, :age, presence: true
+    validates :first_name, :last_name, length: { minimum: 2 }
+    validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 10, less_than_or_equal_to: 150}
+end
+user2 = User.create(first_name:"Judy", last_name:"Ma", email_address:"judykma@gmail.com", age:2)
+user2.errors.full_messages
+Know how to retrieve all users.
+    User.all
+Know how to get the first user.
+    User.first
+Know how to get the last user.
+    User.last
+Know how to get the users sorted by their first name (order by first_name DESC).
+    User.order(first_name: :desc)
+Get the record of the user whose id is 3 and UPDATE the person's last_name to something else. Know how to do this directly in the console using .find and .save.
+    user3.update(last_name: "John")
+Know how to delete a record of a user whose id is 4 (use something like User.find(2).destroy...).
+    User.find(4).destroy

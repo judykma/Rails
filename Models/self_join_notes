@@ -1,0 +1,52 @@
+rails new frienships_self_joins
+rails g model User first_name:string last_name:string
+rails g model Friendship user_id:integer friend_id:integer
+
+
+~~~user.rb~~~
+    class User < ApplicationRecord
+        has_many :friendships, :foreign_key => "user_id", :class_name => "Friendship"
+        has_many :friends, :through => :friendships
+    end
+
+~~~friendship.rb~~~
+    class Friendship < ApplicationRecord
+        belongs_to :user, :foreign_key => "user_id", :class_name => "User"
+        belongs_to :friend, :foreign_key => "friend_id", :class_name => "User"
+    end
+
+
+
+user1 = User.create(first_name:"Judy", last_name:"Ma")
+user2 = User.create(first_name:"Jacob", last_name:"Russell")
+user3 = User.create(first_name:"Anna", last_name:"Ma")
+User.create(first_name:"Tommy", last_name:"Ma")
+
+
+Friendship.create(user:User.second, friend:User.third)
+[This creates a one way Twitter like friendship]
+
+Friendship.all => shows table of all existing frienship links
+
+By adding this in friendship.rb, the relationship will now be two-ways:
+~~~friendship.rb~~~
+    class Friendship < ApplicationRecord
+        belongs_to :user, :foreign_key => "user_id", :class_name => "User"
+        belongs_to :friend, :foreign_key => "friend_id", :class_name => "User"
+
+        after_create :create_inverse
+
+        def create_inverse
+            self.class.create(user: self.friend, friend: self.user)
+        end
+
+        validates_uniqueness_of :user, scope: :friend 
+        #this line prvents repetition of this link/ STOP SIGN
+    end
+
+Friendship.create(user:User.first, friend:User.fourth)
+Friendship.all => shows table of all existing friendship links
+
+User.second.friends
+
+frenemies = User.where

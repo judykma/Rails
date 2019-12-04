@@ -1,0 +1,45 @@
+<h1> Listing Products</h1>
+<table class="table table-striped table-bordered">
+    <tr>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Price</td>
+        <td>Created At</td>
+    </tr>
+    <% @products.each do |product| %>
+    <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td><%= product.created_at %></td>
+        <%# <td>
+            <button action="['/products', product._id]" type="button" class="btn btn-secondary btn-sm">Details</button> |
+            <button action="['/products', product._id, 'edit']" type="button" class="btn btn-primary btn-sm">Edit</button> |
+            <button action="['/products', product._id]" type="button" class="btn btn-secondary btn-sm">Destroy</button>
+        </td> %>
+    </tr>
+    <% end %>
+</table>
+<h2>Create a new product</h2>
+<form action = "/products" method="post">
+<%# patch and delete require additional hidden input %>
+<input name="authenticity_token" value=<%=form_authenticity_token %> type="hidden">
+<table class="table table-striped table-bordered">
+    <tr>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Price</td>
+
+    </tr>
+    <tr>
+        <td><input type="text" name="product[name]"></td>
+        <td><input type="text" name="product[description]"></td>
+        <td><input type="text" name="product[price]"></td>
+
+    </tr>
+</table>
+<input type="submit">
+</form>
+
+<p>Hello! I am in the Views/Products</p>
+<p>Find me in app/views/products/index.html.erb</p>
