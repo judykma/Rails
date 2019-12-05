@@ -1,0 +1,28 @@
+<h1>Update User <%@user.id%></h1>
+
+<a href="/users/new">Add a New User</a> | 
+<a href="/users/total">Total Number of Users</a>
+<%# patch and delete require additional hidden input %>
+<input name="authenticity_token" value=<%=form_authenticity_token %> type="hidden">
+<table class="table table-striped table-bordered">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Created At</td>
+        <td>Updated At</td>
+    </tr>
+    <tr>
+        <td><%= @user.id %></td>
+        <td><input type="text" name="name" value=<%= @user.name %>></td>
+        <td><%= @user.created_at %></td>
+        <td><%= @user.updated_at %></td>
+
+        <%# <td>
+            <button action="['/products', product._id]" type="button" class="btn btn-secondary btn-sm">Details</button> |
+            <button action="['/products', product._id, 'edit']" type="button" class="btn btn-primary btn-sm">Edit</button> |
+            <button action="['/products', product._id]" type="button" class="btn btn-secondary btn-sm">Destroy</button>
+        </td> %>
+    </tr>
+</table>
+<input type="button" class="btn btn-primary btn-sm" value="Update">
+</form>

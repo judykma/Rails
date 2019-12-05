@@ -49,4 +49,5 @@ Friendship.all => shows table of all existing friendship links
 
 User.second.friends
 
-frenemies = User.where
+Get all users that are not your friend
+    frenemies = User.where.not(id: User.second).where.not(id: User.second.friends)

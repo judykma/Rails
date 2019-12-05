@@ -1,0 +1,16 @@
+</table>
+<h2>Add a New User</h2>
+<a href="/users">Back</a>
+<form action = "/users" method="post">
+<%# patch and delete require additional hidden input %>
+<input name="authenticity_token" value=<%=form_authenticity_token %> type="hidden">
+<table class="table table-striped table-bordered">
+    <tr>
+        <td>Full Name</td>
+    </tr>
+    <tr>
+        <td><input type="text" name="name" placeholder='name'></td>
+    </tr>
+</table>
+<input type="button" class="btn btn-primary btn-sm" value="Submit">
+</form>
