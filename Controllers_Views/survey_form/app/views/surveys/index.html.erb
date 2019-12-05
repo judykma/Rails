@@ -1,0 +1,47 @@
+<div id="container">
+    <% if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+            <p><%= error %></p>
+        <% end %>
+    <% end %>
+
+    <form action = "/results" method = "post">
+    <input name="authenticity_token" value=<%=form_authenticity_token %> type="hidden">
+    <table>
+        <tr>
+            <td>Your Name:</td>
+            <td><input type="textarea" name='name'></td>
+        </tr>
+        <tr>
+            <td>Dojo Location:</td>
+            <td>
+                <select name="location">
+                    <% @locations.each do |location| %>
+                        <option value="<%= location %>"><%= location %></option>
+                    <% end %>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Favorite Language:</td>
+            <td>
+                <select name="language">
+                    <% @languages.each do |language| %>
+                        <option value="<%= language %>"><%= language %></option>
+                    <% end %>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Comment (optional):</td>
+            <td><textarea name='comment' id="commentbox" placeholder="Enter your comment here."></textarea></td>
+        </tr>
+
+    </table>
+    <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+    </form>
+</div>
+
+
+
+

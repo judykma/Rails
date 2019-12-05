@@ -24,9 +24,11 @@
         
             <%= button_to "Show", action: "show" %>
             
-            <form method="get" action="/users/<%= user.id %>" class="button_to">
+            <form action="/users/<%= user.id %>/edit" method="get">
+                <input type="hidden" name="_method" value="patch">
                 <input value="Edit" type="button" />
             </form>
+            <a href="/users/<%= user.id %>" data-method="delete">Delete</a>
         </td>
     </tr>
     <% end %>

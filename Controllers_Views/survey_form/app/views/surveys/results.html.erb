@@ -1,0 +1,11 @@
+<body>
+<%= flash[:success] %>
+<h3>Submitted Information:</h3>
+    <div>
+        <h4>Your Name: <%= @survey.name %></h4>
+        <h4>Dojo Location: <%= @survey.location %></h4>
+        <h4>Favorite Language: <%= @survey.language %></h4>
+        <h4>Comment (optional): <%= @survey.comment %></h4>
+        <button class="btn btn-primary btn-sm"><a href="/">Back</a></button>
+    </div>
+</body>
