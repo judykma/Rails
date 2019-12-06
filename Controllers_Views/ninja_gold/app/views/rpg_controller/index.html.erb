@@ -1,0 +1,60 @@
+<div id="header">
+    <div>
+        <p>Your Gold: <%= @total_gold %></p>
+    </div>
+    <div id="body">
+        <div id ="farm" class="location">
+            <form action="/farm" method="POST">
+            <input name="authenticity_token" value=<%=form_authenticity_token %> type="hidden">
+                <h3>Farm</h3>
+                <p>(earns 10-20 golds)</p>
+                <input type="hidden" name="location" value="farm" />
+                <input type="submit" value="Find Gold!"/>
+            </form>
+        </div>
+        <div id ="cave" class="location">
+            <form action="/cave" method="POST">
+            <input name="authenticity_token" value=<%=form_authenticity_token %> type="hidden">
+                <h3>Cave</h3>
+                <p>(earns 5-10 golds)</p>
+                <input type="hidden" name="location" value="cave" />
+                <input type="submit" value="Find Gold!"/>
+            </form>
+        </div>
+        <div id ="house" class="location">
+            <form action="/house" method="POST">
+            <input name="authenticity_token" value=<%=form_authenticity_token %> type="hidden">
+                <h3>House</h3>
+                <p>(earns 2-5 golds)</p>
+                <input type="hidden" name="location" value="house" />
+                <input type="submit" value="Find Gold!"/>
+            </form>
+        </div>
+        <div id ="casino" class="location">
+            <form action="/casino" method="POST">
+            <input name="authenticity_token" value=<%=form_authenticity_token %> type="hidden">
+                <h3>Casino</h3>
+                <p>(earns/takes 0-50 golds)</p>
+                <input type="hidden" name="location" value="casino" />
+                <input type="submit" value="Feeling lucky!"/>
+            </form>
+        </div>
+        
+        <p>Activity:</p>
+        <div id="activity_log">
+            <% @activity_log.each do |log| %>
+                <% if log.include? "lost" %>
+                <p id="red"><%= log %></p>
+                <% elsif log.include? "earned" %>
+                <p id="green"><%= log %></p>
+                <% elsif log.include? "more" %>
+                <p id="yellow"><%= log %></p>
+                <% end %>
+            <% end %>
+        </div>
+        <form action="reset/" method="POST">
+            {% csrf_token %}
+                <input type="hidden" name="reset" value="reset" />
+                <input type="submit" value="Reset"/>
+        </form>
+</div>
