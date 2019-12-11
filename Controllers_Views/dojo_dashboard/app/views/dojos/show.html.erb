@@ -1,0 +1,17 @@
+<h1><%= @dojo.branch %> Dojo</h1>
+
+<table>
+    <tr>
+        <td>Address: </td>
+        <td><%= @dojo.street %></td>
+    </tr>
+    <tr>
+        <td>City: </td>
+        <td><%= @dojo.city %></td>
+        <td>State: </td>
+        <td><%= @dojo.state %></td>
+    </tr>
+</table>
+
+<a href="/dojos">Home</a> | 
+<a href="/dojos/<%= @dojo.id %>/edit">Edit</a>
